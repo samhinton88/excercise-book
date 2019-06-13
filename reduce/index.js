@@ -13,6 +13,16 @@ const _groupedPersonByProfession = input => {
   }, initState)
 }
 
+// Perhaps a tiny bit more junior friendly:
+const groupPeopleByProfession = people => {
+  const intialValue = people.reduce((acc, { profession }) => {
+      return { ...acc, [profession]: [] }
+  }, {})
+  return people.reduce((acc, { name, profession }) => {
+      return { ...acc, [profession]:  [...acc[profession], name]}
+  }, intialValue)
+} 
+
 const staff = [
   { name: 'Sam', profession: 'Doctor'},
   { name: 'Alice', profession: 'Teacher'},
@@ -20,6 +30,6 @@ const staff = [
 ]
 
 
-
+console.log(groupPeopleByProfession(staff))
 
 console.log(_groupedPersonByProfession(staff))
